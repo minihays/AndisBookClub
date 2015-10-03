@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request,render_template
 from google.appengine.ext import ndb
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -40,6 +40,11 @@ def greetings():
     for greeting in greetings:
         output += greeting.content + " xxx "
     return output
+
+@app.route('/topics')
+def topics():
+    return render_template('topics.html')
+
 
 
 
