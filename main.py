@@ -15,32 +15,6 @@ class Greeting(ndb.Model):
         return cls.query(ancestor = ancestor_key).order(-cls.date)
 
 @app.route('/')
-def hello():
-    """Return a friendly HTTP greeting."""
-    return 'Hello World!'
-
-@app.route('/bye')
-def bye():
-    """Return a friendly HTTP greeting."""
-    return 'See Ya World!'
-
-@app.route('/submit')
-def submit():
-    guestbookname = request.args.get('guestbook_name')
-    greeting = Greeting(parent = ndb.Key("Book", guestbookname or "NoTitle"), content = request.args.get('content'))
-    greeting.put()
-    return 'Saved'
-
-@app.route('/greetings')
-def greetings():
-    guestbookname = request.args.get('guestbook_name')
-    ancestor_key = ndb.Key("Book", guestbookname or "NoTitle")
-    greetings = Greeting.query_book(ancestor_key).fetch(20)
-    output = ''
-    for greeting in greetings:
-        output += greeting.content + " xxx "
-    return output
-
 @app.route('/topics')
 def topics():
     return render_template('topics.html')
