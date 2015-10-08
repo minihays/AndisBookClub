@@ -5,6 +5,7 @@
     <style type="text/css">
         .unused { font-weight: bold; }
         #tableGrid {width: 500px;}
+
     </style>
     <script type="text/javascript">
         var data = [
@@ -56,7 +57,7 @@
  for (var i=0; i<data.length; i++){
     var item=data[i];
     if (item['used']===''){
-        $('#topicsTable').append('<tr><td>'+ count +'</td><td>'+item['title'] +'</td><td></td></tr>');
+        $('#topicsTable').append('<tr><td>'+ count +'</td><td class="unused">'+item['title'] +'</td><td></td></tr>');
         count++;
     }
  }
