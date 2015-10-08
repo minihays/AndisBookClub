@@ -4,49 +4,84 @@
     {{ super() }}
     <style type="text/css">
         .unused { font-weight: bold; }
+        #tableGrid {width: 500px;}
     </style>
+    <script type="text/javascript">
+        var data = [
+{'title':"A book with more than 500 pages",'used':'9/2015'},
+{'title':"A classic romance",'used':'9/2015'},
+{'title':"A book that became a movie",'used':'5/2015'},
+{'title':"A book published this year",'used':''},
+{'title':"A book with a number in the title",'used':'6/2015'},
+{'title':"A book written by someone under 30",'used':'10/2015'},
+{'title':"A book with paranormal characters",'used':'7/2015'},
+{'title':"A funny book",'used':''},
+{'title':"A book recommended by an author",'used':''},
+{'title':"A romantic mystery/suspense/thriller",'used':'9/2015'},
+{'title':"A book with a one word title",'used':'8/2015'},
+{'title':"A book of short stories",'used':'10/2015'},
+{'title':"A book set in a different country",'used':''},
+{'title':"A nonfiction book",'used':'5/2015'},
+{'title':"A popular author's first book",'used':''},
+{'title':"A book from an author you love but haven't read yet",'used':'4/2015'},
+{'title':"A book a friend recommended",'used':'6/2015'},
+{'title':"A NY Times bestseller",'used':'4/2015'},
+{'title':"A re-adaptation of a popular story",'used':''},
+{'title':"A freebie you've downloaded",'used':''},
+{'title':"A book that hits close to home",'used':''},
+{'title':"A book you can finish in a day",'used':''},
+{'title':"A book with antonyms in the title",'used':''},
+{'title':"A book set somewhere you've always wanted to go",'used':'3/2015'},
+{'title':"A book that came out the year you graduated college",'used':'7/2015'},
+{'title':"A book with bad reviews",'used':''},
+{'title':"A trilogy",'used':'8/2015'},
+{'title':"A book about childhood friends",'used':'8/2015'},
+{'title':"A book with a love triangle",'used':'3/2015'},
+{'title':"A dystopian book",'used':'6/2015'},
+{'title':"A book set in high school",'used':''},
+{'title':"A book with a color in the title",'used':'4/2015'},
+{'title':"A book that made you cry",'used':''},
+{'title':"A book with magic",'used':'5/2015'},
+{'title':"A book by a male author",'used':''},
+{'title':"A book by an author you've never heard of",'used':''},
+{'title':"A book you own but have never read",'used':'3/2015'},
+{'title':"A book that takes place in your hometown",'used':'7/2015'},
+{'title':"A book published during a year that is significant to you",'used':'10/2015'},
+{'title':"A book set during winter",'used':''},
+
+
+        ];
+        $( document ).ready(function() {
+        var count=1;
+ for (var i=0; i<data.length; i++){
+    var item=data[i];
+    if (item['used']===''){
+        $('#topicsTable').append('<tr><td>'+ count +'</td><td>'+item['title'] +'</td><td></td></tr>');
+        count++;
+    }
+ }
+  for (var i=0; i<data.length; i++){
+    var item=data[i];
+    if (item['used']!==''){
+        $('#topicsTable').append('<tr><td></td><td>'+item['title'] +'</td><td>'+ item['used'] +'</td></tr>');
+
+    }
+ }
+});
+    </script>
 {% endblock %}
 {% block content %}
-<ol>
-<li>A book with more than 500 pages (9/2015)</li>
-<li>A classic romance (9/2015)</li>
-<li>A book that became a movie (5/2015)</li>
-<li class="unused">A book published this year</li>
-<li>A book with a number in the title (6/2015)</li>
-<li>A book written by someone under 30 (10/2015)</li>
-<li>A book with paranormal characters (7/2015)</li>
-<li class="unused">A funny book</li>
-<li class="unused">A book recommended by an author</li>
-<li>A romantic mystery/suspense/thriller (9/2015)</li>
-<li>A book with a one word title (8/2015)</li>
-<li>A book of short stories (10/2015)</li>
-<li class="unused">A book set in a different country</li>
-<li>A nonfiction book (5/2015)</li>
-<li class="unused">A popular author's first book</li>
-<li>A book from an author you love but haven't read yet (4/2015)</li>
-<li>A book a friend recommended (6/2015)</li>
-<li>A NY Times bestseller (4/2015)</li>
-<li class="unused">A re-adaptation of a popular story</li>
-<li class="unused">A freebie you've downloaded</li>
-<li class="unused">A book that hits close to home</li>
-<li class="unused">A book you can finish in a day</li>
-<li class="unused">A book with antonyms in the title</li>
-<li>A book set somewhere you've always wanted to go (3/2015)</li>
-<li>A book that came out the year you graduated college (7/2015)</li>
-<li class="unused">A book with bad reviews</li>
-<li>A trilogy (8/2015)</li>
-<li>A book about childhood friends (8/2015)</li>
-<li>A book with a love triangle (3/2015)</li>
-<li>A dystopian book (6/2015)</li>
-<li class="unused">A book set in high school</li>
-<li>A book with a color in the title (4/2015)</li>
-<li class="unused">A book that made you cry</li>
-<li>A book with magic (5/2015)</li>
-<li class="unused">A book by a male author</li>
-<li class="unused">A book by an author you've never heard of</li>
-<li>A book you own but have never read (3/2015)</li>
-<li>A book that takes place in your hometown (7/2015)</li>
-<li>A book published during a year that is significant to you (10/2015)</li>
-<li class="unused">A book set during winter</li>
-</ol>
+<table class="table table-striped" id="tableGrid" >
+
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Month Used</th>
+        </tr>
+    </thead>
+    <tbody id="topicsTable">
+    </tbody>
+</table>
+
 {% endblock %}
