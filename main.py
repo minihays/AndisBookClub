@@ -6,21 +6,44 @@ app.config['DEBUG'] = True
 # Note: We don't need to call run() since our application is embedded within
 # the App Engine WSGI application server.
 
-class Greeting(ndb.Model):
+class Poll(ndb.Model):
     content = ndb.StringProperty()
-    date = ndb.DateTimeProperty(auto_now_add = True)
-
     @classmethod
-    def query_book(cls, ancestor_key):
-        return cls.query(ancestor = ancestor_key).order(-cls.date)
+    def query_poll(cls, ancestor_key):
+        return cls.query(ancestor = ancestor_key)
 
 @app.route('/')
 @app.route('/topics')
 def topics():
     return render_template('topics.html')
 
+@app.route('/poll/<pollname>')
+def poll(pollname):
+    ancestor_key=ndb.Key("poll",pollname)
+    poll=Poll.query_poll(ancestor_key).get()
+    if poll is None:
+        return "Name your poll, Dummy!", 404
+    return pollname + poll.content
 
+@app.route('/results/<pollname>')
+def results(pollname):
+    return pollname
 
+@app.route('/vote/<pollname>',methods=['POST'])
+def vote(pollname):
+    return pollname
+
+@app.route('/push/<pollname>',methods=['POST'])
+def push(pollname):
+    print request.data
+    ancestor_key=ndb.Key("poll",pollname)
+    poll=Poll.query_poll(ancestor_key).get()
+    if poll is None:
+        poll=Poll(parent=ancestor_key, content=request.data)
+    else:
+        poll.content=request.data
+    poll.put()
+    return request.data
 
 @app.errorhandler(404)
 def page_not_found(e):
