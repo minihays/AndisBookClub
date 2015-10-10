@@ -66,3 +66,14 @@ def page_not_found(e):
 #}
 #],
 #}
+
+#FUNCTIONALITY
+#1. space for content/question
+#2. ability to add items to poll (by me or by other users)
+#3. something clickable to show vote
+#4. way to choose/vote for more than one poll item
+
+#CONTENT FOR COMPUTER TO STORE
+#1. poll question
+#2. poll items + link
+#3. votes
