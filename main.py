@@ -49,3 +49,20 @@ def push(pollname):
 def page_not_found(e):
     """Return a custom 404 error."""
     return 'Sorry, nothing at this URL.', 404
+
+#{
+#"question": "Pick a book",
+#"pollItems": [
+#"book1", "book2", "book3",
+#],
+#"votes": [
+#{
+#"voter": "andi",
+#"votedItem": [1,0]
+#},
+#{
+#"voter": "katie",
+#"votedItem": [0]
+#}
+#],
+#}
